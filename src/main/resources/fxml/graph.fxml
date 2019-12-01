@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.ib.Controller">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="14.0" prefHeight="30.0"
+               prefWidth="462.0" text="SOLAR SYSTEM PLANETS TRAJECTORY">
+            <font>
+                <Font name="System Bold" size="25.0"/>
+            </font>
+        </Label>
+        <ScatterChart fx:id="scatterChart" layoutX="19.0" layoutY="50.0" legendVisible="false" prefHeight="402.0"
+                      prefWidth="763.0">
+            <xAxis>
+                <NumberAxis side="BOTTOM"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT"/>
+            </yAxis>
+        </ScatterChart>
+        <Button fx:id="buttonBisection" layoutX="10.0" layoutY="532.0" mnemonicParsing="false"
+                onAction="#buttonBisectionPressed" prefHeight="50.0" prefWidth="180.0" text="Bisection method"
+                textAlignment="CENTER">
+            <font>
+                <Font size="19.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonFixedPointsIteration" layoutX="210.0" layoutY="532.0" mnemonicParsing="false"
+                onAction="#buttonFixedPointsIterationPressed" prefHeight="50.0" prefWidth="180.0"
+                text="Fixed points iteration">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonNewtonRaphsonMethod" layoutX="410.0" layoutY="532.0" mnemonicParsing="false"
+                onAction="#buttonNewtonRaphsonMethodPressed" prefHeight="50.0" prefWidth="180.0"
+                text="Newton - Raphson method">
+            <font>
+                <Font size="13.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonSecandMethod" layoutX="610.0" layoutY="532.0" mnemonicParsing="false"
+                onAction="#buttonSecandMethodPressed" prefHeight="50.0" prefWidth="180.0" text="Secand method">
+            <font>
+                <Font size="19.0"/>
+            </font>
+        </Button>
+        <TextField fx:id="labelDistance" layoutX="160.0" layoutY="490.0" prefHeight="25.0" prefWidth="150.0"/>
+        <TextField fx:id="labelEccentricity" layoutX="440.0" layoutY="490.0" prefHeight="25.0" prefWidth="150.0"/>
+        <Label layoutX="10.0" layoutY="490.0" text="Distance [A.U.]:">
+            <font>
+                <Font name="System Bold" size="20.0"/>
+            </font>
+        </Label>
+        <Label layoutX="319.0" layoutY="490.0" text="Eccentricity:">
+            <font>
+                <Font name="System Bold" size="20.0"/>
+            </font>
+        </Label>
+        <Button fx:id="buttonSave" layoutX="610.0" layoutY="493.0" mnemonicParsing="false" onAction="#buttonSavePressed"
+                prefHeight="20.0" prefWidth="80.0" text="SAVE">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonClear" layoutX="710.0" layoutY="493.0" mnemonicParsing="false"
+                onAction="#buttonClearPressed" prefHeight="20.0" prefWidth="80.0" text="CLEAR">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonMercury" layoutX="4.0" layoutY="460.0" mnemonicParsing="false"
+                onAction="#buttonMercuryPressed" prefWidth="85.0" text="Mercury"/>
+        <Button fx:id="buttonVenus" layoutX="92.0" layoutY="460.0" mnemonicParsing="false"
+                onAction="#buttonVenusPressed" prefWidth="85.0" text="Venus"/>
+        <Button fx:id="buttonEarth" layoutX="180.0" layoutY="460.0" mnemonicParsing="false"
+                onAction="#buttonEarthPressed" prefWidth="85.0" text="Earth"/>
+        <Button fx:id="buttonMars" layoutX="268.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonMarsPressed"
+                prefWidth="85.0" text="Mars"/>
+        <Button fx:id="buttonJupiter" layoutX="356.0" layoutY="460.0" mnemonicParsing="false"
+                onAction="#buttonJupiterPressed" prefWidth="85.0" text="Jupiter"/>
+        <Button fx:id="buttonSaturn" layoutX="444.0" layoutY="460.0" mnemonicParsing="false"
+                onAction="#buttonSaturnPressed" prefWidth="85.0" text="Saturn"/>
+        <Button fx:id="buttonUranus" layoutX="532.0" layoutY="460.0" mnemonicParsing="false"
+                onAction="#buttonUranusPressed" prefWidth="85.0" text="Uranus"/>
+        <Button fx:id="buttonNeptune" layoutX="620.0" layoutY="460.0" mnemonicParsing="false"
+                onAction="#buttonNeptunePressed" prefWidth="85.0" text="Neptune"/>
+        <Button fx:id="buttonPluto" layoutX="708.0" layoutY="460.0" mnemonicParsing="false"
+                onAction="#buttonPlutoPressed" prefWidth="85.0" text="Pluto"/>
+    </children>
+</AnchorPane>
