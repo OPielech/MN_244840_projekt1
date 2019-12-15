@@ -33,7 +33,7 @@ public class KeplerEquationSolver{
         return series;
     }//end of solverBisection
 
-    public XYChart.Series solverFixedPointsIteration() throws InterruptedException {
+    public XYChart.Series solverFixedPointsIteration() {
         XYChart.Series series = new XYChart.Series();
         for (double i = 0.01; i <= 2 * Math.PI; i += 0.01) {
 
