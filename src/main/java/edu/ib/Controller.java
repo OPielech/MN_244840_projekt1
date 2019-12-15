@@ -18,7 +18,6 @@ public class Controller {
     SaveAllStepHandler saveAllStepHandler;
     Double distance;
     Double eccentricity;
-    String id;
 
     @FXML
     private ResourceBundle resources;
@@ -83,19 +82,33 @@ public class Controller {
     @FXML
     void buttonBisectionPressed(ActionEvent event) {
 
-        distance = Double.valueOf(labelDistance.getText());
-        eccentricity = Double.valueOf(labelEccentricity.getText());
+        try {
+            distance = null;
+            distance = Double.valueOf(labelDistance.getText());
+            if (distance.equals(null))
+                throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
+            labelDistance.setText("Please insert a distance");
+        }
+
+        try {
+            eccentricity=null;
+            eccentricity = Double.valueOf(labelEccentricity.getText());
+            if (eccentricity.equals(null))
+                throw new NullPointerException();
+        }catch (IllegalArgumentException e){
+            labelEccentricity.setText("Please insert an eccentricity");
+        }
 
         keplerEquationSolver=new KeplerEquationSolver(distance,eccentricity);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
 
     }//end of buttonBisectionPressed
 
     @FXML
     void buttonClearPressed(ActionEvent event) {
-//        series.getData().clear();
         scatterChart.getData().clear();
     }//end of buttonClearPressed
 
@@ -104,35 +117,67 @@ public class Controller {
 
         keplerEquationSolver=new KeplerEquationSolver(1,0.0167);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
     }//end of buttonEarthPressed
 
     @FXML
-    void buttonFixedPointsIterationPressed(ActionEvent event) {
+    void buttonFixedPointsIterationPressed(ActionEvent event) throws InterruptedException {
 
-        distance = Double.valueOf(labelDistance.getText());
-        eccentricity = Double.valueOf(labelEccentricity.getText());
+        try {
+            distance = null;
+            distance = Double.valueOf(labelDistance.getText());
+            if (distance.equals(null))
+                throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
+            labelDistance.setText("Please insert a distance");
+        }
+
+        try {
+            eccentricity=null;
+            eccentricity = Double.valueOf(labelEccentricity.getText());
+            if (eccentricity.equals(null))
+                throw new NullPointerException();
+        }catch (IllegalArgumentException e){
+            labelEccentricity.setText("Please insert an eccentricity");
+        }
 
         keplerEquationSolver=new KeplerEquationSolver(distance,eccentricity);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);;
         scatterChart.getData().add(keplerEquationSolver.solverFixedPointsIteration());
     }//end of buttonFixedPointsIterationPressed
 
     @FXML
-    void buttonJupiterPressed(ActionEvent event) {
+    void buttonJupiterPressed(ActionEvent event) throws InterruptedException {
         keplerEquationSolver=new KeplerEquationSolver(5.203,0.0484);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
+
+//        XYChart.Series series=new XYChart.Series();
+//
+//        double x;
+//        double y;
+//        for (int i=0; i<saveAllStepHandler.xValues.size();i++){
+//            //Thread.sleep(1000);
+//            series.getData().clear();
+//            scatterChart.getData().clear();
+//            x=saveAllStepHandler.xValues.get(i);
+//            y=saveAllStepHandler.yValues.get(i);
+//            System.out.println(x);
+//            series.getData().add(new XYChart.Data(x,y));
+//        }
+//        scatterChart.getData().add(series);
+
+
     }
 
     @FXML
     void buttonMarsPressed(ActionEvent event) {
         keplerEquationSolver=new KeplerEquationSolver(1.524,0.0934);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
     }
 
@@ -140,7 +185,7 @@ public class Controller {
     void buttonMercuryPressed(ActionEvent event) {
         keplerEquationSolver=new KeplerEquationSolver(0.387,0.2056);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
     }
 
@@ -148,18 +193,33 @@ public class Controller {
     void buttonNeptunePressed(ActionEvent event) {
         keplerEquationSolver=new KeplerEquationSolver(30.069,0.0086);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
     }
 
     @FXML
     void buttonNewtonRaphsonMethodPressed(ActionEvent event) throws InterruptedException {
-        distance = Double.valueOf(labelDistance.getText());
-        eccentricity = Double.valueOf(labelEccentricity.getText());
+        try {
+            distance = null;
+            distance = Double.valueOf(labelDistance.getText());
+            if (distance.equals(null))
+                throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
+            labelDistance.setText("Please insert a distance");
+        }
+
+        try {
+            eccentricity=null;
+            eccentricity = Double.valueOf(labelEccentricity.getText());
+            if (eccentricity.equals(null))
+                throw new NullPointerException();
+        }catch (IllegalArgumentException e){
+            labelEccentricity.setText("Please insert an eccentricity");
+        }
 
         keplerEquationSolver=new KeplerEquationSolver(distance,eccentricity);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverNewtonRaphsonMethod());
 
     }//end of buttonNewtonRaphsonMethodPressed
@@ -168,7 +228,7 @@ public class Controller {
     void buttonPlutoPressed(ActionEvent event) {
         keplerEquationSolver=new KeplerEquationSolver(39.482,0.2488);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
     }
 
@@ -176,7 +236,7 @@ public class Controller {
     void buttonSaturnPressed(ActionEvent event) {
         keplerEquationSolver=new KeplerEquationSolver(9.537,0.0542);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
     }
 
@@ -200,12 +260,27 @@ public class Controller {
 
     @FXML
     void buttonSecandMethodPressed(ActionEvent event) {
-        distance = Double.valueOf(labelDistance.getText());
-        eccentricity = Double.valueOf(labelEccentricity.getText());
+        try {
+            distance = null;
+            distance = Double.valueOf(labelDistance.getText());
+            if (distance.equals(null))
+                throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
+            labelDistance.setText("Please insert a distance");
+        }
+
+        try {
+            eccentricity=null;
+            eccentricity = Double.valueOf(labelEccentricity.getText());
+            if (eccentricity.equals(null))
+                throw new NullPointerException();
+        }catch (IllegalArgumentException e){
+            labelEccentricity.setText("Please insert an eccentricity");
+        }
 
         keplerEquationSolver = new KeplerEquationSolver(distance,eccentricity);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverSecandMethod());
 
     }//end of buttonSecandMethodPressed
@@ -214,7 +289,7 @@ public class Controller {
     void buttonUranusPressed(ActionEvent event) {
         keplerEquationSolver=new KeplerEquationSolver(19.191,0.0472);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
     }
 
@@ -222,7 +297,7 @@ public class Controller {
     void buttonVenusPressed(ActionEvent event) {
         keplerEquationSolver=new KeplerEquationSolver(0.723,0.0068);
         saveAllStepHandler=new SaveAllStepHandler();
-        keplerEquationSolver.addSteoHandler(saveAllStepHandler);
+        keplerEquationSolver.addStepHandler(saveAllStepHandler);
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
     }
 

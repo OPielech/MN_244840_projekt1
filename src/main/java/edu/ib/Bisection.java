@@ -25,6 +25,7 @@ public class Bisection {
             xr = (xl+xu)/2;
             xrs[i] = xr;
 
+
             if (function.function(xl) * function.function(xr) < 0)
                 xu = xr;
 
