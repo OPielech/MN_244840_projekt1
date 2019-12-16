@@ -118,7 +118,7 @@ public class Controller {
             isEccentricityNotNull = false;
             eccentricity = null;
             eccentricity = Double.valueOf(labelEccentricity.getText());
-            if (eccentricity.equals(null) || eccentricity >= 1)
+            if (eccentricity.equals(null) || eccentricity >= 1 || eccentricity <= 0)
                 throw new IllegalArgumentException();
             else
                 isEccentricityNotNull = true;
@@ -249,7 +249,9 @@ public class Controller {
     @FXML
     void buttonSavePressed(ActionEvent event) throws FileNotFoundException {
 
-        openChoosePathWindow();
+        if (isOpen==false) {
+            openChoosePathWindow();
+        }
 
         try {
             File file = new File(path);
@@ -267,8 +269,10 @@ public class Controller {
             printWriter.close();
 
         } catch (FileNotFoundException e) {
+            if(isOpen==false)
             openIncorrectPathWindow();
         } catch (NullPointerException e) {
+            if(isOpen==false)
             openIncorrectPathWindow();
         }
 
