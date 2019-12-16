@@ -1,4 +1,4 @@
-.root{
+.root {
     -fx-background-image: url("/fxml/background.jpg");
 }
 
@@ -8,7 +8,7 @@
     -fx-background-radius: 20;
 }
 
-.chart{
+.chart {
     -fx-background-color: transparent;
 }
 

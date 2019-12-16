@@ -4,27 +4,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="80.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ib.ModalController">
-   <children>
-      <Button fx:id="buttonBisection" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonBisectionPressed" prefHeight="60.0" prefWidth="130.0" text="Bisection method" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
-      <Button fx:id="buttonFixedPointsIteration" layoutX="158.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonFixedPointsIterationPressed" prefHeight="60.0" prefWidth="130.0" text="Fixed points iteration" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="buttonNewtonRaphsonMethod" layoutX="302.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonNewtonRaphsonMethodPressed" prefHeight="60.0" prefWidth="130.0" text="Newton - Raphson method" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="buttonSecandMethod" layoutX="446.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonSecandMethodPressed" prefHeight="60.0" prefWidth="130.0" text="Secand method" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane prefHeight="80.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ib.ChooseMethodController">
+    <children>
+        <Button fx:id="buttonBisection" layoutX="14.0" layoutY="10.0" mnemonicParsing="false"
+                onAction="#buttonBisectionPressed" prefHeight="60.0" prefWidth="130.0" text="Bisection method"
+                textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonFixedPointsIteration" layoutX="158.0" layoutY="10.0" mnemonicParsing="false"
+                onAction="#buttonFixedPointsIterationPressed" prefHeight="60.0" prefWidth="130.0"
+                text="Fixed points iteration" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonNewtonRaphsonMethod" layoutX="302.0" layoutY="10.0" mnemonicParsing="false"
+                onAction="#buttonNewtonRaphsonMethodPressed" prefHeight="60.0" prefWidth="130.0"
+                text="Newton - Raphson method" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonSecandMethod" layoutX="446.0" layoutY="10.0" mnemonicParsing="false"
+                onAction="#buttonSecandMethodPressed" prefHeight="60.0" prefWidth="130.0" text="Secand method"
+                textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Button>
+    </children>
 </AnchorPane>

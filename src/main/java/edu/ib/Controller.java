@@ -20,14 +20,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Controller {
+    private String path;
     private String method;
-    private XYChart.Series series;
     private KeplerEquationSolver keplerEquationSolver;
     private SaveAllStepHandler saveAllStepHandler;
     private Double distance;
-    private boolean isDistanceNotNull=false;
-    private boolean isEccentricityNotNull=false;
-    private boolean isOpen=false;
+    private boolean isDistanceNotNull = false;
+    private boolean isEccentricityNotNull = false;
+    private boolean isOpen = false;
 
     public Double getDistance() {
         return distance;
@@ -103,59 +103,45 @@ public class Controller {
     void buttonCalculateTrajectoryPressed(ActionEvent event) {
 
         try {
+            isDistanceNotNull = false;
             distance = null;
             distance = Double.valueOf(labelDistance.getText());
             if (distance.equals(null))
                 throw new IllegalArgumentException();
             else
-                isDistanceNotNull=true;
-        }catch (IllegalArgumentException e){
+                isDistanceNotNull = true;
+        } catch (IllegalArgumentException e) {
             labelDistance.setText("Please insert a distance");
         }
 
         try {
-            eccentricity=null;
+            isEccentricityNotNull = false;
+            eccentricity = null;
             eccentricity = Double.valueOf(labelEccentricity.getText());
-            if (eccentricity.equals(null) || eccentricity>=1)
+            if (eccentricity.equals(null) || eccentricity >= 1)
                 throw new IllegalArgumentException();
             else
-                isEccentricityNotNull=true;
-        }catch (IllegalArgumentException e){
-            labelEccentricity.setText("Please insert an eccentricity");
+                isEccentricityNotNull = true;
+        } catch (IllegalArgumentException e) {
+            labelEccentricity.setText("Eccentricity is not correct");
         }
 
-        if (isEccentricityNotNull==true) {
-            try {
-                eccentricity = null;
-                eccentricity = Double.valueOf(labelEccentricity.getText());
-                if (eccentricity >= 1)
-                    throw new IllegalArgumentException();
-                else
-                    isEccentricityNotNull = true;
-            } catch (IllegalArgumentException e) {
-                labelEccentricity.setText("Eccentricity has to be <1");
-            }
-        }
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
+        saveAllStepHandler = new SaveAllStepHandler();
 
-        keplerEquationSolver=new KeplerEquationSolver(distance,eccentricity);
-        saveAllStepHandler=new SaveAllStepHandler();
-
-        if(isDistanceNotNull==true && isEccentricityNotNull==true && isOpen==false) {
+        if (isDistanceNotNull == true && isEccentricityNotNull == true && isOpen == false) {
             openChooseMethodWindow();
 
-            if (method.equals("Bisection method")){
+            if (method.equals("Bisection method")) {
                 keplerEquationSolver.addStepHandler(saveAllStepHandler);
                 scatterChart.getData().add(keplerEquationSolver.solverBisection());
-            }
-            else if(method.equals("Fixed points iteration")){
+            } else if (method.equals("Fixed points iteration")) {
                 keplerEquationSolver.addStepHandler(saveAllStepHandler);
                 scatterChart.getData().add(keplerEquationSolver.solverFixedPointsIteration());
-            }
-            else if(method.equals("Newton Raphson")){
+            } else if (method.equals("Newton Raphson")) {
                 keplerEquationSolver.addStepHandler(saveAllStepHandler);
                 scatterChart.getData().add(keplerEquationSolver.solverNewtonRaphsonMethod());
-            }
-            else if(method.equals("Secand method")){
+            } else if (method.equals("Secand method")) {
                 keplerEquationSolver.addStepHandler(saveAllStepHandler);
                 scatterChart.getData().add(keplerEquationSolver.solverSecandMethod());
             }
@@ -175,8 +161,8 @@ public class Controller {
     @FXML
     void buttonEarthPressed(ActionEvent event) {
 
-        keplerEquationSolver=new KeplerEquationSolver(1,0.0167);
-        saveAllStepHandler=new SaveAllStepHandler();
+        keplerEquationSolver = new KeplerEquationSolver(1, 0.0167);
+        saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("1");
         labelEccentricity.setText("0.0167");
@@ -186,8 +172,8 @@ public class Controller {
 
     @FXML
     void buttonJupiterPressed(ActionEvent event) throws InterruptedException {
-        keplerEquationSolver=new KeplerEquationSolver(5.203,0.0484);
-        saveAllStepHandler=new SaveAllStepHandler();
+        keplerEquationSolver = new KeplerEquationSolver(5.203, 0.0484);
+        saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("5.203");
         labelEccentricity.setText("0.0484");
@@ -211,8 +197,8 @@ public class Controller {
 
     @FXML
     void buttonMarsPressed(ActionEvent event) {
-        keplerEquationSolver=new KeplerEquationSolver(1.524,0.0934);
-        saveAllStepHandler=new SaveAllStepHandler();
+        keplerEquationSolver = new KeplerEquationSolver(1.524, 0.0934);
+        saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("1.524");
         labelEccentricity.setText("0.0934");
@@ -221,8 +207,8 @@ public class Controller {
 
     @FXML
     void buttonMercuryPressed(ActionEvent event) {
-        keplerEquationSolver=new KeplerEquationSolver(0.387,0.2056);
-        saveAllStepHandler=new SaveAllStepHandler();
+        keplerEquationSolver = new KeplerEquationSolver(0.387, 0.2056);
+        saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("0.387");
         labelEccentricity.setText("0.2056");
@@ -231,8 +217,8 @@ public class Controller {
 
     @FXML
     void buttonNeptunePressed(ActionEvent event) {
-        keplerEquationSolver=new KeplerEquationSolver(30.069,0.0086);
-        saveAllStepHandler=new SaveAllStepHandler();
+        keplerEquationSolver = new KeplerEquationSolver(30.069, 0.0086);
+        saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("30.069");
         labelEccentricity.setText("0.0086");
@@ -241,8 +227,8 @@ public class Controller {
 
     @FXML
     void buttonPlutoPressed(ActionEvent event) {
-        keplerEquationSolver=new KeplerEquationSolver(39.482,0.2488);
-        saveAllStepHandler=new SaveAllStepHandler();
+        keplerEquationSolver = new KeplerEquationSolver(39.482, 0.2488);
+        saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("39.482");
         labelEccentricity.setText("0.2488");
@@ -251,8 +237,8 @@ public class Controller {
 
     @FXML
     void buttonSaturnPressed(ActionEvent event) {
-        keplerEquationSolver=new KeplerEquationSolver(9.537,0.0542);
-        saveAllStepHandler=new SaveAllStepHandler();
+        keplerEquationSolver = new KeplerEquationSolver(9.537, 0.0542);
+        saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("9.537");
         labelEccentricity.setText("0.0542");
@@ -262,26 +248,37 @@ public class Controller {
 
     @FXML
     void buttonSavePressed(ActionEvent event) throws FileNotFoundException {
-        File file = new File("Trajectory.txt");
-        PrintWriter printWriter = new PrintWriter(file);
 
-        printWriter.println("x values:");
-        for (int i=0; i<saveAllStepHandler.xValues.size();i++){
-            printWriter.println(saveAllStepHandler.xValues.get(i));
+        openChoosePathWindow();
+
+        try {
+            File file = new File(path);
+            PrintWriter printWriter = new PrintWriter(file);
+
+            printWriter.println("x values:");
+            for (int i = 0; i < saveAllStepHandler.xValues.size(); i++) {
+                printWriter.println(saveAllStepHandler.xValues.get(i));
+            }
+
+            printWriter.println("\ny values:");
+            for (int i = 0; i < saveAllStepHandler.yValues.size(); i++) {
+                printWriter.println(saveAllStepHandler.yValues.get(i));
+            }
+            printWriter.close();
+
+        } catch (FileNotFoundException e) {
+            openIncorrectPathWindow();
+        } catch (NullPointerException e) {
+            openIncorrectPathWindow();
         }
 
-        printWriter.println("\ny values:");
-        for (int i=0; i<saveAllStepHandler.yValues.size();i++){
-            printWriter.println(saveAllStepHandler.yValues.get(i));
-        }
-        printWriter.close();
 
     }//end of buttonSavePressed
 
     @FXML
     void buttonUranusPressed(ActionEvent event) {
-        keplerEquationSolver=new KeplerEquationSolver(19.191,0.0472);
-        saveAllStepHandler=new SaveAllStepHandler();
+        keplerEquationSolver = new KeplerEquationSolver(19.191, 0.0472);
+        saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("19.191");
         labelEccentricity.setText("0.0472");
@@ -290,8 +287,8 @@ public class Controller {
 
     @FXML
     void buttonVenusPressed(ActionEvent event) {
-        keplerEquationSolver=new KeplerEquationSolver(0.723,0.0068);
-        saveAllStepHandler=new SaveAllStepHandler();
+        keplerEquationSolver = new KeplerEquationSolver(0.723, 0.0068);
+        saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("0.723");
         labelEccentricity.setText("0.0068");
@@ -313,28 +310,71 @@ public class Controller {
         this.distance = distance;
     }
 
-    private void openChooseMethodWindow(){
+    private void openChooseMethodWindow() {
         try {
-            isOpen=true;
-            FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/fxml/ChooseMethodWindow.fxml"));
+            isOpen = true;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ChooseMethodWindow.fxml"));
             Parent root = fxmlLoader.load();
 
-            ModalController modalController = fxmlLoader.getController();
+            ChooseMethodController chooseMethodController = fxmlLoader.getController();
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/fxml/StylesheetModalWindow.css");
-            Stage stage=new Stage();
+            Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Choose method to calculate trajectory");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.showAndWait();
 
-            isOpen=false;
-            method=modalController.getMethod();
+            isOpen = false;
+            method = chooseMethodController.getMethod();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }//end of openChooseMethodWindow
 
+    private void openChoosePathWindow() {
+        try {
+            isOpen = true;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ChoosePathWindow.fxml"));
+            Parent root = fxmlLoader.load();
+
+            ChoosePathController choosePathController = fxmlLoader.getController();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/fxml/StylesheetChoosePathWindow.css");
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Choose path to save trajectory");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.showAndWait();
+
+            isOpen = false;
+            path = choosePathController.getPath();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }//end of openChoosePathWindow
+
+    private void openIncorrectPathWindow() {
+        try {
+            isOpen = true;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/IncorrectPathWindow.fxml"));
+            Parent root = fxmlLoader.load();
+
+            IncorrectPathController incorrectPathController = fxmlLoader.getController();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/fxml/StylesheetIncorrectPathWindow.css");
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Incorrect path");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.showAndWait();
+            isOpen = false;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }//end of class
