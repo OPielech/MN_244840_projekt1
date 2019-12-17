@@ -8,73 +8,61 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="edu.ib.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ib.Controller">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="14.0" prefHeight="30.0"
-               prefWidth="462.0" text="SOLAR SYSTEM PLANETS TRAJECTORY" textFill="WHITE">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="14.0" prefHeight="30.0" prefWidth="462.0" text="SOLAR SYSTEM PLANETS TRAJECTORY" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="25.0"/>
+                <Font name="System Bold" size="25.0" />
             </font>
         </Label>
-        <ScatterChart fx:id="scatterChart" layoutX="19.0" layoutY="50.0" legendVisible="false" prefHeight="402.0"
-                      prefWidth="763.0">
+        <ScatterChart fx:id="scatterChart" layoutX="19.0" layoutY="50.0" legendVisible="false" prefHeight="402.0" prefWidth="763.0">
             <xAxis>
-                <NumberAxis side="BOTTOM" tickLabelFill="WHITE"/>
+                <NumberAxis side="BOTTOM" tickLabelFill="WHITE" />
             </xAxis>
             <yAxis>
-                <NumberAxis side="LEFT" tickLabelFill="WHITE"/>
+                <NumberAxis side="LEFT" tickLabelFill="WHITE" />
             </yAxis>
         </ScatterChart>
-        <TextField fx:id="labelDistance" layoutX="161.0" layoutY="500.0" prefHeight="25.0" prefWidth="150.0"/>
-        <TextField fx:id="labelEccentricity" layoutX="441.0" layoutY="500.0" prefHeight="25.0" prefWidth="162.0"/>
+        <TextField fx:id="labelDistance" layoutX="161.0" layoutY="500.0" prefHeight="25.0" prefWidth="150.0" />
+        <TextField fx:id="labelEccentricity" layoutX="441.0" layoutY="500.0" prefHeight="25.0" prefWidth="162.0" />
         <Label layoutX="11.0" layoutY="500.0" text="Distance [A.U.]:" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="20.0"/>
+                <Font name="System Bold" size="20.0" />
             </font>
         </Label>
         <Label layoutX="320.0" layoutY="500.0" text="Eccentricity:" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="20.0"/>
+                <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <Button fx:id="buttonSave" layoutX="617.0" layoutY="503.0" mnemonicParsing="false" onAction="#buttonSavePressed"
-                prefHeight="20.0" prefWidth="80.0" text="SAVE" textFill="WHITE">
+        <Button fx:id="buttonSave" layoutX="617.0" layoutY="503.0" mnemonicParsing="false" onAction="#buttonSavePressed" prefHeight="20.0" prefWidth="80.0" text="SAVE" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="buttonClear" layoutX="711.0" layoutY="503.0" mnemonicParsing="false"
-                onAction="#buttonClearPressed" prefHeight="20.0" prefWidth="80.0" text="CLEAR" textFill="WHITE">
+        <Button fx:id="buttonClear" layoutX="711.0" layoutY="503.0" mnemonicParsing="false" onAction="#buttonClearPressed" prefHeight="20.0" prefWidth="80.0" text="CLEAR" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="buttonMercury" layoutX="4.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#buttonMercuryPressed" prefWidth="85.0" text="Mercury" textFill="WHITE"/>
-        <Button fx:id="buttonVenus" layoutX="92.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#buttonVenusPressed" prefWidth="85.0" text="Venus" textFill="WHITE"/>
-        <Button fx:id="buttonEarth" layoutX="180.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#buttonEarthPressed" prefWidth="85.0" text="Earth" textFill="WHITE"/>
-        <Button fx:id="buttonMars" layoutX="268.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonMarsPressed"
-                prefWidth="85.0" text="Mars" textFill="WHITE"/>
-        <Button fx:id="buttonJupiter" layoutX="356.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#buttonJupiterPressed" prefWidth="85.0" text="Jupiter" textFill="WHITE"/>
-        <Button fx:id="buttonSaturn" layoutX="444.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#buttonSaturnPressed" prefWidth="85.0" text="Saturn" textFill="WHITE"/>
-        <Button fx:id="buttonUranus" layoutX="532.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#buttonUranusPressed" prefWidth="85.0" text="Uranus" textFill="WHITE"/>
-        <Button fx:id="buttonNeptune" layoutX="620.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#buttonNeptunePressed" prefWidth="85.0" text="Neptune" textFill="WHITE"/>
-        <Button fx:id="buttonPluto" layoutX="708.0" layoutY="460.0" mnemonicParsing="false"
-                onAction="#buttonPlutoPressed" prefWidth="85.0" text="Pluto" textFill="WHITE"/>
-        <Button fx:id="buttonCalculateTrajectory" alignment="TOP_LEFT" layoutX="250.0" layoutY="542.0"
-                mnemonicParsing="false" onAction="#buttonCalculateTrajectoryPressed" prefHeight="30.0" prefWidth="270.0"
-                text="CALCULATE TRAJECTORY" textAlignment="JUSTIFY" textFill="WHITE">
+        <Button fx:id="buttonMercury" layoutX="4.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonMercuryPressed" prefWidth="85.0" text="Mercury" textFill="WHITE" />
+        <Button fx:id="buttonVenus" layoutX="92.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonVenusPressed" prefWidth="85.0" text="Venus" textFill="WHITE" />
+        <Button fx:id="buttonEarth" layoutX="180.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonEarthPressed" prefWidth="85.0" text="Earth" textFill="WHITE" />
+        <Button fx:id="buttonMars" layoutX="268.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonMarsPressed" prefWidth="85.0" text="Mars" textFill="WHITE" />
+        <Button fx:id="buttonJupiter" layoutX="356.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonJupiterPressed" prefWidth="85.0" text="Jupiter" textFill="WHITE" />
+        <Button fx:id="buttonSaturn" layoutX="444.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonSaturnPressed" prefWidth="85.0" text="Saturn" textFill="WHITE" />
+        <Button fx:id="buttonUranus" layoutX="532.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonUranusPressed" prefWidth="85.0" text="Uranus" textFill="WHITE" />
+        <Button fx:id="buttonNeptune" layoutX="620.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonNeptunePressed" prefWidth="85.0" text="Neptune" textFill="WHITE" />
+        <Button fx:id="buttonPluto" layoutX="708.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonPlutoPressed" prefWidth="85.0" text="Pluto" textFill="WHITE" />
+        <Button fx:id="buttonCalculateTrajectory" alignment="TOP_LEFT" layoutX="100.0" layoutY="542.0" mnemonicParsing="false" onAction="#buttonCalculateTrajectoryPressed" prefHeight="30.0" prefWidth="270.0" text="CALCULATE TRAJECTORY" textAlignment="JUSTIFY" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="20.0"/>
+                <Font name="System Bold" size="20.0" />
             </font>
         </Button>
+      <Button fx:id="buttonAnimation" alignment="CENTER" contentDisplay="CENTER" layoutX="430.0" layoutY="542.0" mnemonicParsing="false" onAction="#buttonAnimationPressed" prefHeight="30.0" prefWidth="270.0" text="ANIMATION" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

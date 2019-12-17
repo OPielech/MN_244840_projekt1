@@ -5,8 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.animation.Animation;
+import javafx.animation.PathTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,25 +20,30 @@ import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.PathElement;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Controller {
+
     private String path;
     private String method;
     private KeplerEquationSolver keplerEquationSolver;
     private SaveAllStepHandler saveAllStepHandler;
     private Double distance;
+    private Double eccentricity;
     private boolean isDistanceNotNull = false;
     private boolean isEccentricityNotNull = false;
     private boolean isOpen = false;
-
-    public Double getDistance() {
-        return distance;
-    }
-
-    private Double eccentricity;
-
 
     @FXML
     private ResourceBundle resources;
@@ -98,6 +107,16 @@ public class Controller {
 
     @FXML
     private Button buttonCalculateTrajectory;
+
+    @FXML
+    private Button buttonAnimation;
+
+    @FXML
+    void buttonAnimationPressed(ActionEvent event) {
+        if (isOpen==false) {
+            openAnimationWindow();
+        }
+    }
 
     @FXML
     void buttonCalculateTrajectoryPressed(ActionEvent event) {
@@ -178,21 +197,6 @@ public class Controller {
         labelDistance.setText("5.203");
         labelEccentricity.setText("0.0484");
         scatterChart.getData().add(keplerEquationSolver.solverBisection());
-
-//        XYChart.Series series=new XYChart.Series();
-//        keplerEquationSolver.solverBisection();
-//        double x;
-//        double y;
-//        for (int i=0; i<saveAllStepHandler.xValues.size();i++){
-//            Thread.sleep(500);
-//            series.getData().clear();
-//            scatterChart.getData().clear();
-//            x=saveAllStepHandler.xValues.get(i);
-//            y=saveAllStepHandler.yValues.get(i);
-//            System.out.println(x);
-//            series.getData().add(new XYChart.Data(x,y));
-//            scatterChart.getData().add(series);
-//        }
     }
 
     @FXML
@@ -307,11 +311,7 @@ public class Controller {
         assert buttonSave != null : "fx:id=\"buttonSave\" was not injected: check your FXML file 'graph.fxml'.";
         assert buttonClear != null : "fx:id=\"buttonClear\" was not injected: check your FXML file 'graph.fxml'.";
         assert buttonCalculateTrajectory != null : "fx:id=\"buttonCalculateTrajectory\" was not injected: check your FXML file 'graph.fxml'.";
-
-    }
-
-    public void setDistance(Double distance) {
-        this.distance = distance;
+        assert buttonAnimation != null : "fx:id=\"buttonAnimation\" was not injected: check your FXML file 'graph.fxml'.";
     }
 
     private void openChooseMethodWindow() {
@@ -372,6 +372,56 @@ public class Controller {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Incorrect path");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.showAndWait();
+            isOpen = false;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }//end of openIncorrectPathWindow
+
+    private void openAnimationWindow(){
+        try {
+            isOpen = true;
+
+            Ellipse ellipse = new Ellipse();
+            ellipse.setCenterX(400);
+            ellipse.setCenterY(300);
+            ellipse.setRadiusX(250);
+            ellipse.setRadiusY(100);
+            ellipse.setFill(Color.TRANSPARENT);
+            ellipse.setStroke(Color.WHITE);
+            ellipse.setStrokeWidth(1);
+
+            Glow glow =new Glow();
+            glow.setLevel(10);
+
+            Lighting lighting = new Lighting();
+
+            Circle circle = new Circle(20);
+            circle.setFill(Color.valueOf("#321415"));
+            circle.setEffect(glow);
+            circle.setEffect(lighting);
+
+            PathTransition pathTransition = new PathTransition();
+            pathTransition.setNode(circle);
+            pathTransition.setPath(ellipse);
+            pathTransition.setDuration(Duration.seconds(5));
+            pathTransition.setAutoReverse(false);
+            pathTransition.setCycleCount(Animation.INDEFINITE);
+            pathTransition.play();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/AnimationWindow.fxml"));
+            Pane root = fxmlLoader.load();
+            root.getChildren().addAll(ellipse,circle);
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/fxml/StylesheetAnimationWindow.css");
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Animation");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.showAndWait();
             isOpen = false;
