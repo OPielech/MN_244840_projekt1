@@ -25,10 +25,7 @@ import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.PathElement;
+import javafx.scene.shape.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -113,7 +110,7 @@ public class Controller {
 
     @FXML
     void buttonAnimationPressed(ActionEvent event) {
-        if (isOpen==false) {
+        if (isOpen == false) {
             openAnimationWindow();
         }
     }
@@ -179,8 +176,10 @@ public class Controller {
 
     @FXML
     void buttonEarthPressed(ActionEvent event) {
+        distance = 1.0;
+        eccentricity = 0.0167;
 
-        keplerEquationSolver = new KeplerEquationSolver(1, 0.0167);
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
         saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("1");
@@ -191,7 +190,10 @@ public class Controller {
 
     @FXML
     void buttonJupiterPressed(ActionEvent event) throws InterruptedException {
-        keplerEquationSolver = new KeplerEquationSolver(5.203, 0.0484);
+        distance = 5.203;
+        eccentricity = 0.0484;
+
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
         saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("5.203");
@@ -201,7 +203,10 @@ public class Controller {
 
     @FXML
     void buttonMarsPressed(ActionEvent event) {
-        keplerEquationSolver = new KeplerEquationSolver(1.524, 0.0934);
+        distance = 1.524;
+        eccentricity = 0.0934;
+
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
         saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("1.524");
@@ -211,7 +216,10 @@ public class Controller {
 
     @FXML
     void buttonMercuryPressed(ActionEvent event) {
-        keplerEquationSolver = new KeplerEquationSolver(0.387, 0.2056);
+        distance = 0.387;
+        eccentricity = 0.2056;
+
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
         saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("0.387");
@@ -221,7 +229,10 @@ public class Controller {
 
     @FXML
     void buttonNeptunePressed(ActionEvent event) {
-        keplerEquationSolver = new KeplerEquationSolver(30.069, 0.0086);
+        distance = 30.069;
+        eccentricity = 0.0086;
+
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
         saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("30.069");
@@ -231,7 +242,10 @@ public class Controller {
 
     @FXML
     void buttonPlutoPressed(ActionEvent event) {
-        keplerEquationSolver = new KeplerEquationSolver(39.482, 0.2488);
+        distance = 39.482;
+        eccentricity = 0.2488;
+
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
         saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("39.482");
@@ -241,7 +255,10 @@ public class Controller {
 
     @FXML
     void buttonSaturnPressed(ActionEvent event) {
-        keplerEquationSolver = new KeplerEquationSolver(9.537, 0.0542);
+        distance = 9.537;
+        eccentricity = 0.0542;
+
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
         saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("9.537");
@@ -253,7 +270,7 @@ public class Controller {
     @FXML
     void buttonSavePressed(ActionEvent event) throws FileNotFoundException {
 
-        if (isOpen==false) {
+        if (isOpen == false) {
             openChoosePathWindow();
         }
 
@@ -273,11 +290,11 @@ public class Controller {
             printWriter.close();
 
         } catch (FileNotFoundException e) {
-            if(isOpen==false)
-            openIncorrectPathWindow();
+            if (isOpen == false)
+                openIncorrectPathWindow();
         } catch (NullPointerException e) {
-            if(isOpen==false)
-            openIncorrectPathWindow();
+            if (isOpen == false)
+                openIncorrectPathWindow();
         }
 
 
@@ -285,7 +302,10 @@ public class Controller {
 
     @FXML
     void buttonUranusPressed(ActionEvent event) {
-        keplerEquationSolver = new KeplerEquationSolver(19.191, 0.0472);
+        distance = 19.191;
+        eccentricity = 0.0472;
+
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
         saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("19.191");
@@ -295,7 +315,10 @@ public class Controller {
 
     @FXML
     void buttonVenusPressed(ActionEvent event) {
-        keplerEquationSolver = new KeplerEquationSolver(0.723, 0.0068);
+        distance = 0.723;
+        eccentricity = 0.0068;
+
+        keplerEquationSolver = new KeplerEquationSolver(distance, eccentricity);
         saveAllStepHandler = new SaveAllStepHandler();
         keplerEquationSolver.addStepHandler(saveAllStepHandler);
         labelDistance.setText("0.723");
@@ -381,20 +404,46 @@ public class Controller {
         }
     }//end of openIncorrectPathWindow
 
-    private void openAnimationWindow(){
+    private void openAnimationWindow() {
         try {
             isOpen = true;
+            double scale;
 
-            Ellipse ellipse = new Ellipse();
-            ellipse.setCenterX(400);
-            ellipse.setCenterY(300);
-            ellipse.setRadiusX(250);
-            ellipse.setRadiusY(100);
-            ellipse.setFill(Color.TRANSPARENT);
-            ellipse.setStroke(Color.WHITE);
-            ellipse.setStrokeWidth(1);
+            if (distance < 1)
+                scale = 300;
 
-            Glow glow =new Glow();
+            else if (distance >= 1 && distance < 3)
+                scale = 100;
+
+            else if (distance >= 3 && distance < 5.5)
+                scale = 50;
+
+            else if (distance >= 5.5 && distance < 29)
+                scale = 10;
+
+            else if (distance >= 29 && distance < 60)
+                scale = 5;
+
+            else if (distance >= 60 && distance < 300)
+                scale = 1;
+
+            else if (distance >= 300 && distance < 600)
+                scale = 0.5;
+            else
+                scale = 0.1;
+
+            Polygon polygon = new Polygon();
+            for (int i = 0; i < saveAllStepHandler.xValues.size(); i++)
+                polygon.getPoints().addAll(saveAllStepHandler.xValues.get(i) * scale, saveAllStepHandler.yValues.get(i) * scale);
+
+            polygon.setLayoutX(400);
+            polygon.setLayoutY(300);
+            polygon.setFill(Color.TRANSPARENT);
+            polygon.setStroke(Color.WHITE);
+            polygon.setStrokeWidth(1);
+            polygon.setScaleY(-1);
+
+            Glow glow = new Glow();
             glow.setLevel(10);
 
             Lighting lighting = new Lighting();
@@ -406,7 +455,7 @@ public class Controller {
 
             PathTransition pathTransition = new PathTransition();
             pathTransition.setNode(circle);
-            pathTransition.setPath(ellipse);
+            pathTransition.setPath(polygon);
             pathTransition.setDuration(Duration.seconds(5));
             pathTransition.setAutoReverse(false);
             pathTransition.setCycleCount(Animation.INDEFINITE);
@@ -414,7 +463,7 @@ public class Controller {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/AnimationWindow.fxml"));
             Pane root = fxmlLoader.load();
-            root.getChildren().addAll(ellipse,circle);
+            root.getChildren().addAll(polygon, circle);
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/fxml/StylesheetAnimationWindow.css");
@@ -426,6 +475,9 @@ public class Controller {
             stage.showAndWait();
             isOpen = false;
 
+        } catch (NullPointerException e) {
+            labelDistance.setText("Please enter values");
+            labelEccentricity.setText("Please enter values");
         } catch (IOException e) {
             e.printStackTrace();
         }

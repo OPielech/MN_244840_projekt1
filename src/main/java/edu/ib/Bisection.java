@@ -22,9 +22,8 @@ public class Bisection {
         double[] xrs = new double[maxIteration];
 
         do {
-            xr = (xl+xu)/2;
+            xr = (xl + xu) / 2;
             xrs[i] = xr;
-
 
             if (function.function(xl) * function.function(xr) < 0)
                 xu = xr;
@@ -32,12 +31,11 @@ public class Bisection {
             else if (function.function(xr) * function.function(xu) < 0)
                 xl = xr;
             else
-                i = maxIteration-1;
+                i = maxIteration - 1;
 
-            if(i!=0) {
+            if (i != 0) {
                 ea = Math.abs((xrs[i] - xrs[i - 1]) / xrs[i] * 100);
-            }
-            else {
+            } else {
                 ea = Math.abs((xrs[i] - 0) / xrs[i] * 100);
             }
             i++;
@@ -47,5 +45,5 @@ public class Bisection {
         return xr;
     }//end of solver
 
-}//end of RegulaFalsi
+}//end of Bisection
 

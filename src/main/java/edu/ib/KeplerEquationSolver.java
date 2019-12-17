@@ -8,6 +8,7 @@ public class KeplerEquationSolver {
     private double distance;
     private double eccentricity;
     StepHandler stepHandler;
+    double[] pointsX;
 
 
     public KeplerEquationSolver(double distance, double eccentricity) {
@@ -21,10 +22,11 @@ public class KeplerEquationSolver {
 
     public XYChart.Series solverBisection() {
         XYChart.Series series = new XYChart.Series();
+
         for (double i = 0.01; i <= 2 * Math.PI; i += 0.01) {
 
             double m = i;
-            double E = new Bisection(-50, 100, 0.001, 1000, x -> x = m + eccentricity * x - x).solver();
+            double E = new Bisection(-50, 100, 0.001, 1000, x -> x = m + eccentricity * Math.sin(x) - x).solver();
             double x = distance * Math.cos(E - eccentricity);
             double y = distance * Math.sqrt(1 - Math.pow(eccentricity, 2)) * Math.sin(E);
             stepHandler.handleStep(x, y);
@@ -38,7 +40,7 @@ public class KeplerEquationSolver {
         for (double i = 0.01; i <= 2 * Math.PI; i += 0.01) {
 
             double m = i;
-            double E = new FixedPointsIteration(10, 0.001, 1000, x -> m + eccentricity * x - x).solver();
+            double E = new FixedPointsIteration(10, 0.001, 1000, x -> x = m + eccentricity * Math.sin(x) - x).solver();
             double x = distance * Math.cos(E - eccentricity);
             double y = distance * Math.sqrt(1 - Math.pow(eccentricity, 2)) * Math.sin(E);
             stepHandler.handleStep(x, y);
@@ -52,7 +54,7 @@ public class KeplerEquationSolver {
 
         for (double i = 0.01; i <= 2 * Math.PI; i += 0.01) {
             double m = i;
-            double E = new NewtonRaphsonMethod(10, 0.001, 1000, x -> m + eccentricity * x - x).solver();
+            double E = new NewtonRaphsonMethod(10, 0.001, 1000, x -> x = m + eccentricity * Math.sin(x) - x).solver();
             double x = distance * Math.cos(E - eccentricity);
             double y = distance * Math.sqrt(1 - Math.pow(eccentricity, 2)) * Math.sin(E);
             stepHandler.handleStep(x, y);
@@ -67,7 +69,7 @@ public class KeplerEquationSolver {
 
         for (double i = 0.01; i <= 2 * Math.PI; i += 0.01) {
             double m = i;
-            double E = new SecandMethod(10, 0.001, 1000, x -> m + eccentricity * x - x).solver();
+            double E = new SecandMethod(10, 0.001, 1000, x -> x = m + eccentricity * Math.sin(x) - x).solver();
             double x = distance * Math.cos(E - eccentricity);
             double y = distance * Math.sqrt(1 - Math.pow(eccentricity, 2)) * Math.sin(E);
             stepHandler.handleStep(x, y);
