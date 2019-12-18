@@ -135,7 +135,7 @@ public class Controller {
         }
 
 
-        if (isDistanceNotNull == true && isEccentricityNotNull == true && isOpen == false)
+        if (isDistanceNotNull == true && isEccentricityNotNull == true)
             openAnimationWindow();
     }
 
@@ -432,7 +432,7 @@ public class Controller {
 
     private void openAnimationWindow() {
         try {
-            isOpen = true;
+
             double scale;
 
             if (distance < 1)
@@ -499,7 +499,6 @@ public class Controller {
             stage.setTitle("Animation");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.showAndWait();
-            isOpen = false;
 
         } catch (NullPointerException e) {
             labelDistance.setText("Please enter values");
