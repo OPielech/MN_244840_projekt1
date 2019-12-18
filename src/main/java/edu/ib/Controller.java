@@ -110,9 +110,33 @@ public class Controller {
 
     @FXML
     void buttonAnimationPressed(ActionEvent event) {
-        if (isOpen == false) {
-            openAnimationWindow();
+        try {
+            isDistanceNotNull = false;
+            distance = null;
+            distance = Double.valueOf(labelDistance.getText());
+            if (distance.equals(null))
+                throw new IllegalArgumentException();
+            else
+                isDistanceNotNull = true;
+        } catch (IllegalArgumentException e) {
+            labelDistance.setText("Please insert a distance");
         }
+
+        try {
+            isEccentricityNotNull = false;
+            eccentricity = null;
+            eccentricity = Double.valueOf(labelEccentricity.getText());
+            if (eccentricity.equals(null) || eccentricity >= 1 || eccentricity <= 0)
+                throw new IllegalArgumentException();
+            else
+                isEccentricityNotNull = true;
+        } catch (IllegalArgumentException e) {
+            labelEccentricity.setText("Eccentricity is not correct");
+        }
+
+
+        if (isDistanceNotNull == true && isEccentricityNotNull == true && isOpen == false)
+            openAnimationWindow();
     }
 
     @FXML
@@ -168,6 +192,8 @@ public class Controller {
 
     @FXML
     void buttonClearPressed(ActionEvent event) {
+        saveAllStepHandler.xValues = null;
+        saveAllStepHandler.yValues = null;
         scatterChart.getData().clear();
 
         labelEccentricity.clear();
